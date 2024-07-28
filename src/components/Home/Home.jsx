@@ -1,6 +1,6 @@
+
 import React, { useEffect, useState } from "react";
 import style from "./Home.module.css";
-
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { useFormik } from "formik";
@@ -43,8 +43,27 @@ export default function Home() {
       });
   }
 
+  // async function getNotes() {
+  //   setNoteError(null)
+  //   await axios
+  //     .get(`https://note-sigma-black.vercel.app/api/v1/notes`, {
+  //       headers: {
+  //         token: `3b8ny__${localStorage.getItem("userToken")}`,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       setNotes(res?.data?.notes);
+  //       setNotesLength(res?.data?.notes.length);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //       setNoteError(err?.response?.data?.msg);
+  //       setNotesLength(0)
+  //     });
+  // }
+
   async function getNotes() {
-    setNoteError(null)
+    setNoteError(null);
     await axios
       .get(`https://note-sigma-black.vercel.app/api/v1/notes`, {
         headers: {
@@ -58,9 +77,10 @@ export default function Home() {
       .catch((err) => {
         console.log(err);
         setNoteError(err?.response?.data?.msg);
-        setNotesLength(0)
+        setNotesLength(0);
       });
   }
+  
 
   async function deleteNote(noteID) {
     await axios
